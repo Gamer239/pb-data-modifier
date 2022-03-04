@@ -2,8 +2,15 @@ import sys, argparse, csv, os
 
 #Perform an operation(s) on a row.
 def fill_row(row, lastRow):
+    #Fill in the practitioner if needed.
+    #This data should stay the same between line items since only 1 Practitioner can be assigned to a 
+    #transaction even if it contains multiple line items.
     if row['Practitioner'] == "":
         row['Practitioner'] = lastRow['Practitioner']
+
+    #Set the AmountPaid item if it has no value.
+    #Set to 0 since any other value would mess up further calculations.
+    #Other payment info in a transaction can pull data from LineItem* fields
     if row['AmountPaid'] == "":
         row['AmountPaid'] = 0.00
     return(row)
