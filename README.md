@@ -8,8 +8,11 @@ Python 3
 usage: fix-data.py [-h] -i [I] [-o [O]]
 
 optional arguments:
+
   -h, --help  show this help message and exit
+
   -i [I]      Name of the input file
+
   -o [O]      Name of the file for the output (Default=output.csv)
 
 ## Examples
