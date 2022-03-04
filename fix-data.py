@@ -3,6 +3,8 @@ import sys, argparse, csv, os
 def fill_row(row, lastRow):
     if row['Practitioner'] == "":
         row['Practitioner'] = lastRow['Practitioner']
+    if row['AmountPaid'] == "":
+        row['AmountPaid'] = 0.00
     return(row)
 
 def do_work(filename, outputfilename):
