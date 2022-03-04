@@ -14,7 +14,9 @@ optional arguments:
 
 ## Examples
 Providing a simple input file
+
 `python fix-data.py -i input.csv`
 
 Providing a simple input file and declaring a custom filename
-`python fix-data.py -i Invoices\ 19800101-19800131.csv -o custom-out-filename.csv`
+
+`python fix-data.py -i Invoices-19800101-19800131.csv -o custom-out-filename.csv`
