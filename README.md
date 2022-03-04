@@ -3,3 +3,18 @@ This repo exists to make easy modifications to data that is exported from Practi
 
 ## Requirements
 Python 3
+
+## Usage
+usage: fix-data.py [-h] -i [I] [-o [O]]
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -i [I]      Name of the input file
+  -o [O]      Name of the file for the output (Default=output.csv)
+
+## Examples
+Providing a simple input file
+`python fix-data.py -i input.csv`
+
+Providing a simple input file and declaring a custom filename
+`python fix-data.py -i Invoices\ 19800101-19800131.csv -o custom-out-filename.csv`
