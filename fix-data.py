@@ -97,7 +97,7 @@ def do_work(filename, outputfilename, sum_args, filter_args):
 
                 #Test if the data matches the filter
                 #Ignore the sum and writing if the data doesn't match the filter
-                if does_match_filter(row, filter_args) == False:
+                if filter_args != None and does_match_filter(row, filter_args) == False:
                     continue
 
                 #Add the sum data if it was defined in the arguments
