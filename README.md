@@ -5,15 +5,19 @@ This repo exists to make easy modifications to data that is exported from Practi
 Python 3
 
 ## Usage
-usage: fix-data.py [-h] -i [I] [-o [O]]
+usage: fix-data.py [-h] -i [I] [-o [O]] [-s S [S ...]] [-f F [F ...]]
 
 optional arguments:
 
-  -h, --help  show this help message and exit
+  -h, --help    show this help message and exit
 
-  -i [I]      Name of the input file
+  -i [I]        Name of the input file
 
-  -o [O]      Name of the file for the output (Default=output.csv)
+  -o [O]        Name of the file for the output (Default=output.csv)
+
+  -s S [S ...]  A space separated list of fields names to sum
+  
+  -f F [F ...]  Only output or compute a result when column=value
 
 ## Examples
 Providing a simple input file
