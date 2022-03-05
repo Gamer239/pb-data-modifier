@@ -57,7 +57,7 @@ def does_match_filter(row, filter_args):
 
         #Sanity check to make sure that the column name exists in the data 
         if columnName not in row.keys():
-            print("Error: Invalid Column Name not found in row. Check your argument or data")
+            print("Error: Invalid Column Name not found in row. Check your filter argument or data")
             exit()
 
         #if one part of the filter doesn't match then return without processing any more of the data
@@ -66,7 +66,35 @@ def does_match_filter(row, filter_args):
             break
     return(filter_match)
 
-def do_work(filename, outputfilename, sum_args, filter_args):
+#Shorten a cell's information by searching for a substring and setting the cell's contents to the substring
+def shorten_data(row, shorten_args):
+    shortrow = row
+    for shortstr in shorten_args:
+        if shortstr.find("=") == -1:
+            print("Error: String to shorten must contain the = character between the column and values")
+            exit()
+        
+        #Grab the column name
+        columnName = shortstr.split("=", 1)[0]
+
+        #Grab the list of acceptable strings
+        valueList = shortstr.split("=", 1)[1].split(",")
+
+        #Sanity check to make sure that the column name exists in the data 
+        if columnName not in row.keys():
+            print("Error: Invalid Column Name not found in row. Check your shorten argument or data")
+            exit()
+
+        #Search for the existance of any of the values
+        #in the column data
+        for value in valueList:
+            if row[columnName].find(value) >= 0:
+                shortrow[columnName] = value
+                break
+
+    return(shortrow)
+
+def do_work(filename, outputfilename, sum_args, filter_args, shorten_args):
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
         print("Error: Input file not found")
@@ -93,6 +121,10 @@ def do_work(filename, outputfilename, sum_args, filter_args):
             for row in csvcontents:
                 #save the current row with any data modified from fill_row
                 row = fill_row(row, lastRow)
+
+                #Shorten data only if shorten arguments were specified
+                if shorten_args != None:
+                    row = shorten_data(row, shorten_args)
 
                 #save the current row to use for the next row's calculations
                 lastRow = row
@@ -125,10 +157,11 @@ if __name__ == '__main__':
     parser.add_argument('-o', type=str, nargs='?', help="Name of the file for the output (Default=output.csv)", required=False, default="output.csv")
     parser.add_argument('-s', nargs='+', help="A space separated list of fields names to sum", required=False)
     parser.add_argument('-f', nargs='+', help="Only output or compute a result when column=value or column=value,value2,etc", required=False)
+    parser.add_argument('-shorten', nargs='+', help="Shorten the text of data to the text specified in the specified column. column=ShortenedValue", required=False)
 
     # Parse and print the results
     args = parser.parse_args()
     if args.i == None:
         parser.print_help()
     else:
-        do_work(args.i, args.o, args.s, args.f)
+        do_work(args.i, args.o, args.s, args.f, args.shorten)
