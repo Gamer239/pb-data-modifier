@@ -76,3 +76,7 @@ Find the sum of the AmountPaid to practitioner John Doe but only when John Doe's
 Filter and shorten data based on Practitioner Joe and his "New Client" rows. Note: Shorting happens BEFORE filtering.
 
 `python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe" -shorten "LineItemDescription=New Client"`
+
+Filter, shorten, and sum data. Note: Shortening happens BEFORE filtering.
+
+`python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe" "LineItemAmount=3.50" -shorten "LineItemDescription=New Client,Phone Client" -s Total AmountPaid`
