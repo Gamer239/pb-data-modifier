@@ -36,6 +36,7 @@ def sum_row(row, sum_fields, current_sums):
                 if len(sums[field]) > 1000:
                     print("Error: You're trying to perform a sum operation on a string. Check your -s arguments.")
                     exit()
+            #Carry over the data if the new field is blank
             elif len(sums[field]) == 0:
                 sums[field] = current_sums[field]
             
@@ -72,6 +73,7 @@ def does_match_filter(row, filter_args):
 def shorten_data(row, shorten_args):
     shortrow = copy.deepcopy(row)
     for shortstr in shorten_args:
+        #Sanity check that we have a = sign declared before splitting to column and value
         if shortstr.find("=") == -1:
             print("Error: String to shorten must contain the = character between the column and values")
             exit()
