@@ -124,7 +124,7 @@ if __name__ == '__main__':
     parser.add_argument('-i', type=str, nargs='?', help="Name of the input file", required=True)
     parser.add_argument('-o', type=str, nargs='?', help="Name of the file for the output (Default=output.csv)", required=False, default="output.csv")
     parser.add_argument('-s', nargs='+', help="A space separated list of fields names to sum", required=False)
-    parser.add_argument('-f', nargs='+', help="Only output or compute a result when column=value", required=False)
+    parser.add_argument('-f', nargs='+', help="Only output or compute a result when column=value or column=value,value2,etc", required=False)
 
     # Parse and print the results
     args = parser.parse_args()
