@@ -27,9 +27,11 @@ def sum_row(row, sum_fields, current_sums):
         if field in current_sums.keys():
 
             #Check if the field contents are only numeric
-            if type(sums[field]) == float or sums[field].replace('.','',1).isdigit():
+            if type(sums[field]) == float or (len(sums[field]) >= 1 and sums[field].replace('.','',1).isdigit()):
+                if len(str(current_sums[field])) == 0:
+                    current_sums[field] = 0.0
                 sums[field] = float(sums[field]) + float(current_sums[field])
-            else:
+            elif len(sums[field]) >= 1:
                 sums[field] = sums[field] + current_sums[field]
                 if len(sums[field]) > 1000:
                     print("Error: You're trying to perform a sum operation on a string. Check your -s arguments.")
