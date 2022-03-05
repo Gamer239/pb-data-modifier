@@ -41,11 +41,11 @@ Filter the data based on a Practitioner.
 
 Filter the data such that you are looking for data from John and Jane Doe
 
-`python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe, Jane Doe"
+`python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe, Jane Doe"`
 
 Look for a specific piece of data where multiple filters apply.
 
-`python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe" "LineItemAmount=3.50"
+`python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe" "LineItemAmount=3.50"`
 
 ### Combination Examples
 Filter data based on the Practitioner John Doe and output the AmountPaid for any column that John Doe is in.
