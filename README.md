@@ -50,7 +50,7 @@ Look for a specific piece of data where multiple filters apply.
 
 `python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe" "LineItemAmount=3.50"`
 
-###Shorten Examples
+### Shorten Examples
 
 Shorten a cell's contents
 
