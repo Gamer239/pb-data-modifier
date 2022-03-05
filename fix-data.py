@@ -50,14 +50,11 @@ if __name__ == '__main__':
     # Create the argument parser
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', type=str, nargs='?', help="Name of the input file", required=True)
-    parser.add_argument('-o', type=str, nargs='?', help="Name of the file for the output (Default=output.csv)", required=False)
+    parser.add_argument('-o', type=str, nargs='?', help="Name of the file for the output (Default=output.csv)", required=False, default="output.csv")
 
     # Parse and print the results
     args = parser.parse_args()
     if args.i == None:
         parser.print_help()
     else:
-        if args.o == None:
-            #if no default output name is set then use output.csv
-            args.o = "output.csv"
         do_work(args.i, args.o)
