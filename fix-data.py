@@ -79,7 +79,7 @@ def do_work(filename, outputfilename, sum_args, filter_args):
         #Initialize lastrow contents
         lastRow = ""
 
-        #nitialize sum contents
+        #Initialize sum contents
         sum_data = {}
 
         #open the output file for writing the modified results
