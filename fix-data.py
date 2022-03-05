@@ -36,6 +36,8 @@ def sum_row(row, sum_fields, current_sums):
                 if len(sums[field]) > 1000:
                     print("Error: You're trying to perform a sum operation on a string. Check your -s arguments.")
                     exit()
+            elif len(sums[field]) == 0:
+                sums[field] = current_sums[field]
             
     #return the new sum dictionary row
     return(sums)
