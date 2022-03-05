@@ -8,7 +8,6 @@ Python 3
 usage: fix-data.py [-h] -i [I] [-o [O]] [-s S [S ...]] [-f F [F ...]] [-shorten SHORTEN [SHORTEN ...]]
 
 optional arguments:
-
   -h, --help            show this help message and exit
 
   -i [I]                Name of the input file
@@ -17,10 +16,12 @@ optional arguments:
 
   -s S [S ...]          A space separated list of fields names to sum
 
-  -f F [F ...]          Only output or compute a result when column=value or column=value,value2,etc
+  -f F [F ...]          Only output or compute a result when column=value or column=value,value2,etc. Note: Do NOT put
+                        commas in the filter values.
 
   -shorten SHORTEN [SHORTEN ...]
-                        Shorten the text of data to the text specified in the specified column. column=ShortenedValue
+                        Shorten the text of data to the text specified in the specified column. column=ShortenedValue.
+                        Note: Do NOT include commas in the strings to shorten. Shortening happens before filtering.
 
 ## Examples
 ### Simple Examples
