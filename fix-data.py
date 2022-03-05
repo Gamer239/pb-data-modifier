@@ -38,8 +38,33 @@ def sum_row(row, sum_fields, current_sums):
     #return the new sum dictionary row
     return(sums)
 
+#Return whether or not the row matches the given filters
+def does_match_filter(row, filter_args):
+    filter_match = True
+    for filter in filter_args:
+        #Sanity check that we are given the delimeter between column name and value(s)
+        if filter.find("=") == -1:
+            print("Error: Filters must contain the = character between the column and values")
+            exit()
+        
+        #Grab the column name
+        columnName = filter.split("=", 1)[0]
 
-def do_work(filename, outputfilename, sum_args):
+        #Grab the list of acceptable Values
+        valueList = filter.split("=", 1)[1].split(",")
+
+        #Sanity check to make sure that the column name exists in the data 
+        if columnName not in row.keys():
+            print("Error: Invalid Column Name not found in row. Check your argument or data")
+            exit()
+
+        #if one part of the filter doesn't match then return without processing any more of the data
+        if row[columnName] not in valueList:
+            filter_match = False
+            break
+    return(filter_match)
+
+def do_work(filename, outputfilename, sum_args, filter_args):
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
         print("Error: Input file not found")
@@ -70,6 +95,11 @@ def do_work(filename, outputfilename, sum_args):
                 #save the current row to use for the next row's calculations
                 lastRow = row
 
+                #Test if the data matches the filter
+                #Ignore the sum and writing if the data doesn't match the filter
+                if does_match_filter(row, filter_args) == False:
+                    continue
+
                 #Add the sum data if it was defined in the arguments
                 if sum_args != None:
                     sum_data = sum_row(row, sum_args, sum_data)
@@ -92,10 +122,11 @@ if __name__ == '__main__':
     parser.add_argument('-i', type=str, nargs='?', help="Name of the input file", required=True)
     parser.add_argument('-o', type=str, nargs='?', help="Name of the file for the output (Default=output.csv)", required=False, default="output.csv")
     parser.add_argument('-s', nargs='+', help="A space separated list of fields names to sum", required=False)
+    parser.add_argument('-f', nargs='+', help="Only output or compute a result when column=value", required=False)
 
     # Parse and print the results
     args = parser.parse_args()
     if args.i == None:
         parser.print_help()
     else:
-        do_work(args.i, args.o, args.s)
+        do_work(args.i, args.o, args.s, args.f)
