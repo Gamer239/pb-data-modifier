@@ -1,4 +1,4 @@
-import sys, argparse, csv, os
+import sys, argparse, csv, os, copy
 
 #Perform an operation(s) on a row.
 def fill_row(row, lastRow):
@@ -18,7 +18,7 @@ def fill_row(row, lastRow):
 #Add the current row data to the sum totals and return the updated values
 def sum_row(row, sum_fields, current_sums):
     #Save a copy of the row to manipulate
-    sums = row
+    sums = copy.deepcopy(row)
 
     #Loop through each of the field names
     for field in sum_fields:
@@ -70,7 +70,7 @@ def does_match_filter(row, filter_args):
 
 #Shorten a cell's information by searching for a substring and setting the cell's contents to the substring
 def shorten_data(row, shorten_args):
-    shortrow = row
+    shortrow = copy.deepcopy(row)
     for shortstr in shorten_args:
         if shortstr.find("=") == -1:
             print("Error: String to shorten must contain the = character between the column and values")
