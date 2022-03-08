@@ -5,7 +5,7 @@ This repo exists to make easy modifications to data that is exported from Practi
 Python 3
 
 ## Usage
-usage: fix-data.py [-h] -i [I] [-o [O]] [-s S [S ...]] [-f F [F ...]] [-shorten SHORTEN [SHORTEN ...]]
+usage: fix-data.py [-h] -i [I] [-o [O]] [-s S [S ...]] [-f F [F ...]] [-shorten SHORTEN [SHORTEN ...]] [--column-names]
 
 optional arguments:
   -h, --help            show this help message and exit
