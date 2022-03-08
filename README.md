@@ -49,9 +49,13 @@ Filter the data such that you are looking for data from John and Jane Doe
 
 `python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe,Jane Doe"`
 
-Look for a specific piece of data where multiple filters apply.
+Look for a specific set of data where multiple filters apply.
 
 `python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe" "LineItemAmount=3.50"`
+
+Look for a specific set of data where multiple filters and multiple data values apply.
+
+`python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe,Jane Doe" "LineItemAmount=3.50,8.50"`
 
 ### Shorten Examples
 
