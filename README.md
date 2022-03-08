@@ -23,6 +23,8 @@ optional arguments:
                         Shorten the text of data to the text specified in the specified column. column=ShortenedValue.
                         Note: Do NOT include commas in the strings to shorten. Shortening happens before filtering.
 
+  --column-names        List the names of the columns in the imported CSV and exit
+
 ## Examples
 ### Simple Examples
 Providing a simple input file.
@@ -64,6 +66,11 @@ Shorten multiple cells in the same column
 Shorten multiple columns
 
 `python fix-data.py -i Invoices-19800101-19800131.csv -shorten "Practitioner=Joe" "LineItemDescription=New Client"`
+
+### Column Name Example
+Output the names of the columns. This is useful for getting information for the filter argument without doing any data processing.
+
+`python fix-data.py -i Invoices-19800101-19800131.csv --column-names`
 
 ### Combination Examples
 Filter data based on the Practitioner John Doe and output the AmountPaid for any column that John Doe is in.
