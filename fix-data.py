@@ -98,7 +98,7 @@ def shorten_data(row, shorten_args):
 
     return(shortrow)
 
-def do_work(filename, outputfilename, sum_args, filter_args, shorten_args):
+def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, output_header_only):
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
         print("Error: Input file not found")
@@ -113,6 +113,12 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args):
 
         #Initialize sum contents
         sum_data = {}
+
+        #Output the column names and quit if asked
+        if output_header_only == True:
+            print("Valid Column Names:\n")
+            print(*csvcontents.fieldnames, sep='\n')
+            exit()
 
         #open the output file for writing the modified results
         with open(outputfilename, 'w', newline='', encoding='utf8') as outputfile:
@@ -162,10 +168,11 @@ if __name__ == '__main__':
     parser.add_argument('-s', nargs='+', help="A space separated list of fields names to sum", required=False)
     parser.add_argument('-f', nargs='+', help="Only output or compute a result when column=value or column=value,value2,etc. Note: Do NOT put commas in the filter values.", required=False)
     parser.add_argument('-shorten', nargs='+', help="Shorten the text of data to the text specified in the specified column. column=ShortenedValue. Note: Do NOT include commas in the strings to shorten. Shortening happens before filtering.", required=False)
+    parser.add_argument('--column-names', action='store_true', help="List the names of the columns in the imported CSV and exit", required=False)
 
     # Parse and print the results
     args = parser.parse_args()
     if args.i == None:
         parser.print_help()
     else:
-        do_work(args.i, args.o, args.s, args.f, args.shorten)
+        do_work(args.i, args.o, args.s, args.f, args.shorten, args.column_names)
