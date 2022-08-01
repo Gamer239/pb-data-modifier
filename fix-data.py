@@ -20,6 +20,24 @@ def fill_row(row, lastRow):
         row['AmountPaid'] = 0.00
     return(row)
 
+#Convert a string based number to a float by shifting precision before converting to a float
+def string_to_float(number):
+    if type(number) == str:
+        leftside = float(number.split('.',1)[0])
+        rightside = float(number.split('.',1)[1])
+        leftside = leftside * 100
+        number = leftside + rightside
+    return(number)
+
+def float_to_string(number):
+    if type(number) == float:
+        shiftnum = 100
+        rightside = number % shiftnum
+        leftside = number - rightside
+        leftside = leftside / shiftnum
+        number = str(int(leftside)) + "." + str(int(rightside))
+    return(number)
+
 #Add the current row data to the sum totals and return the updated values
 def sum_row(row, sum_fields, current_sums):
     #Save a copy of the row to manipulate
@@ -35,7 +53,7 @@ def sum_row(row, sum_fields, current_sums):
             if type(sums[field]) == float or (len(sums[field]) >= 1 and sums[field].replace('.','',1).isdigit()):
                 if len(str(current_sums[field])) == 0:
                     current_sums[field] = 0.0
-                sums[field] = float(sums[field]) + float(current_sums[field])
+                sums[field] = string_to_float(sums[field]) + string_to_float(current_sums[field])
             elif len(sums[field]) >= 1:
                 sums[field] = sums[field] + current_sums[field]
                 if len(sums[field]) > 1000:
@@ -44,6 +62,10 @@ def sum_row(row, sum_fields, current_sums):
             #Carry over the data if the new field is blank
             elif len(sums[field]) == 0:
                 sums[field] = current_sums[field]
+
+    #Convert floats back to proper values
+    for field in sum_fields:
+        sums[field] = float_to_string(sums[field])
             
     #return the new sum dictionary row
     return(sums)
@@ -163,7 +185,7 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, outpu
                 #Check of the provided argument has a key in the computed dictionary
                 if field in sum_data.keys():
                     #print the computed result
-                    print("For field: " + field + " the total is " + str(sum_data[field]))
+                    print("For field: " + field + " the total is " + str(float_to_string(sum_data[field])))
 
 if __name__ == '__main__':
     # Create the argument parser
