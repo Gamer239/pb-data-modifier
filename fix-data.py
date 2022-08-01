@@ -3,7 +3,7 @@ __copyright__ = "Copyright (C) 2022 Gamer239"
 __license__ = "General Public Licence v2"
 __version__ = "1.0"
 
-import sys, argparse, csv, os, copy
+import sys, argparse, csv, os, copy, math
 
 #Perform an operation(s) on a row.
 def fill_row(row, lastRow):
@@ -32,8 +32,11 @@ def string_to_float(number):
 def float_to_string(number):
     if type(number) == float:
         shiftnum = 100
-        rightside = number % shiftnum
-        leftside = number - rightside
+        rightside = math.fmod(number, shiftnum)
+        if number >= 0:
+            leftside = number - rightside
+        else:
+            leftside = number + rightside
         leftside = leftside / shiftnum
         number = str(int(leftside)) + "." + str(int(rightside))
     return(number)
