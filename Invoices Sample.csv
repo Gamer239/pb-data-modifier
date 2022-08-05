@@ -1,4 +1,13 @@
 Practitioner,ContactName,EmailAddress,InvoiceNumber,InvoiceDate,DueDate,Total,AmountDue,AmountPaid,PaymentDate,Description,Notes,Quantity,UnitAmount,Discount,AccountCode,TaxDescription,TaxAmount,WriteOff,Currency,PaymentStatus,PaymentSource,TotalRefund,RefundSources,RefundDates,Fees,LineItemDescription,LineItemAmount,LineItemQuantity,LineItemDiscount,LineItemTaxDescription,LineItemTaxAmount,LineItemSubTotal
+PractFirst PractLast,Client 3 Client 3 Last Name,client3@email.fake,CCLIENT-20220805-01,08/05/2022,08/05/2022,880.27,0.00,890.00,08/05/2022,* Supplement Company Supplement,,1,1.29,0.00,5e8ff9bf55ba3508199d22ed,,0.00,0.00,USD,Paid in Full,Cash / Debit,0.00,,,,* Supplement Company Supplement,1.29,1,0.00,,0.00,1.29
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* Xymogen IgG 2000 CWP™,91.28,1,0.00,,0.00,91.28
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* Xymogen L-Glutamine (powder),93.50,1,0.00,,0.00,93.50
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* Xymogen Folafy® ER,92.20,1,0.00,,0.00,92.20
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* Supreme Nutrition BFB-2,41.00,1,0.00,,0.00,41.00
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* NET ER 911 #9,31.00,1,0.00,,0.00,31.00
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* NET Day & Night Vitals #24,30.00,1,0.00,,0.00,30.00
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* Cellcore Biosciences Step 3: Whole Body Immune Support,250.00,1,0.00,,0.00,250.00
+,,,CCLIENT-20220805-01,08/05/2022,08/05/2022,,,,,,,,,,,,,,,,,,,,,* Name - Store Step 1: Energy & Drainage,250.00,1,0.00,,0.00,250.00
 PractFirst PractLast,Client 4 Client 4 Last Name,client4@email.fake,CCLIENT-20220731-01,07/31/2022,07/31/2022,30.00,0.00,30.00,07/31/2022,Something to be refunded,,1,30.00,0.00,5e8ff9bf55ba3508199d22e9,,0.00,0.00,USD,Paid in Full,Cash / Debit,30.00,Cash / Debit,07/31/2022,,Something to be refunded,30.00,1,0.00,,0.00,30.00
 PractFirst PractLast,Client 3 Client 3 Last Name,client3@email.fake,CCLIENT-20220731-01,07/31/2022,07/31/2022,15.00,0.00,0.00,,Item to be written off,,1,15.00,0.00,5e8ff9bf55ba3508199d22ea,,0.00,15.00,USD,Paid in Full,,0.00,,,,Item to be written off,15.00,1,0.00,,0.00,15.00
 PractFirst PractLast,Client 2 First Name Client 2 Last Name,client2@email.fake,CCLIENT-20220731-01,07/31/2022,07/31/2022,22.00,0.00,22.00,07/31/2022,"Test Service on Jul 31, 2022",,1,22.00,0.00,5e8ff9bf55ba3508199d22eb,,0.00,0.00,USD,Paid in Full,Cash / Debit,0.00,,,,"Test Service on Jul 31, 2022",22.00,1,0.00,,0.00,22.00
