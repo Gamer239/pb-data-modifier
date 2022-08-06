@@ -156,7 +156,9 @@ def build_filters(filter_args):
                 else:
                     filter = filter + field
                 filter = filter + spacer
-            filters.append(filter)
+            row["filter"] = filter
+            
+    return file_filters
             
     return filters
 
