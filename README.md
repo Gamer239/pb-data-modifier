@@ -4,6 +4,16 @@ This repo exists to make easy modifications to data that is exported from Practi
 ## Requirements
 Python 3
 
+Install the requirements:
+
+`pip install -r requirements.txt`
+
+or
+
+`pip3 install -r requirements.txt`
+
+if python3 is not your default interpreter.
+
 ## Usage
 usage: fix-data.py [-h] -i [I] [-o [O]] [-s S [S ...]] [-f F [F ...]] [-shorten SHORTEN [SHORTEN ...]] [--column-names]
 
