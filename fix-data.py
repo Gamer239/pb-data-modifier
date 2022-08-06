@@ -138,6 +138,28 @@ def read_supplemental_csv(filename):
     csvcontents = csv.DictReader(open(filename, newline='', encoding='utf8'))
         return(csvcontents)
 
+#Take in the filter argument strings one at a time and turn them into valid string filters
+def build_filters(filter_args):
+    filters = []
+    for item in filter_args:
+        filename = item.split("|", 1)[0]
+        file_filters = read_supplemental_csv(filename)
+        spacer = item.split("|", 2)[1]
+        fields = item.split("|", 2)[2]
+
+        #Create each filter from each row of the data
+        for row in file_filters:
+            filter = ""
+            for field in fields.split("|"):
+                if field in row:
+                    filter = filter + row[field]
+                else:
+                    filter = filter + field
+                filter = filter + spacer
+            filters.append(filter)
+            
+    return filters
+
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
         print("Error: Input file not found")
