@@ -128,7 +128,17 @@ def shorten_data(row, shorten_args):
 
     return(shortrow)
 
-def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, output_header_only):
+#Read and return the supplemental csv
+def read_supplemental_csv(filename):
+    #Check to make sure that the input file exists and exit on error
+    if os.path.isfile(filename) == False:
+        print("Error: Supplemental input file not found")
+        exit()
+
+    with open(filename, newline='', encoding='utf8') as csvfile:
+        csvcontents = csv.DictReader(csvfile)
+        return(csvcontents)
+
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
         print("Error: Input file not found")
