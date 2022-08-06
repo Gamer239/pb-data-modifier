@@ -159,8 +159,10 @@ def build_filters(filter_args):
             row["filter"] = filter
             
     return file_filters
-            
-    return filters
+
+def compute_lineitemprofit(row, filters):
+    
+    return row
 
 def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, output_header_only, profit_args):
     #Check to make sure that the input file exists and exit on error
@@ -202,6 +204,9 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, outpu
                 #Shorten data only if shorten arguments were specified
                 if shorten_args != None:
                     row = shorten_data(row, shorten_args)
+
+                #Compute profit
+                row = compute_lineitemprofit(row, profit_filter)
 
                 #save the current row to use for the next row's calculations
                 lastRow = row
