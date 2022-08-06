@@ -136,7 +136,7 @@ def read_supplemental_csv(filename):
         exit()
 
     csvcontents = csv.DictReader(open(filename, newline='', encoding='utf8'))
-        return(csvcontents)
+    return(csvcontents)
 
 #Take in the filter argument strings one at a time and turn them into valid string filters
 def build_filters(filter_args):
@@ -160,6 +160,7 @@ def build_filters(filter_args):
             
     return filters
 
+def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, output_header_only, profit_args):
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
         print("Error: Input file not found")
@@ -174,6 +175,9 @@ def build_filters(filter_args):
 
         #Initialize sum contents
         sum_data = {}
+
+        #Fetch Filters For Profit Calculations
+        profit_filter = build_filters(profit_args)
 
         #Output the column names and quit if asked
         if output_header_only == True:
@@ -230,10 +234,11 @@ if __name__ == '__main__':
     parser.add_argument('-f', nargs='+', help="Only output or compute a result when column=value or column=value,value2,etc. Note: Do NOT put commas in the filter values.", required=False)
     parser.add_argument('-shorten', nargs='+', help="Shorten the text of data to the text specified in the specified column. column=ShortenedValue. Note: Do NOT include commas in the strings to shorten. Shortening happens before filtering.", required=False)
     parser.add_argument('--column-names', action='store_true', help="List the names of the columns in the imported CSV and exit", required=False)
+    parser.add_argument('-p', nargs='+', help="Use an additional file to calculate a line item profit", required=False)
 
     # Parse and print the results
     args = parser.parse_args()
     if args.i == None:
         parser.print_help()
     else:
-        do_work(args.i, args.o, args.s, args.f, args.shorten, args.column_names)
+        do_work(args.i, args.o, args.s, args.f, args.shorten, args.column_names, args.p)
