@@ -135,8 +135,7 @@ def read_supplemental_csv(filename):
         print("Error: Supplemental input file not found")
         exit()
 
-    with open(filename, newline='', encoding='utf8') as csvfile:
-        csvcontents = csv.DictReader(csvfile)
+    csvcontents = csv.DictReader(open(filename, newline='', encoding='utf8'))
         return(csvcontents)
 
     #Check to make sure that the input file exists and exit on error
