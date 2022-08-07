@@ -43,6 +43,11 @@ optional arguments:
                         Fee Percent - Used for computing the line item profit only. The name of the column should be set
                         here.
 
+  -partial-supplement-string [PARTIAL_SUPPLEMENT_STRING]
+                        Define the string that will be used to determine if the X warning is needed
+
+  -supress-x            Supress a warning about X being found
+
 ## Examples
 ### Simple Examples
 Providing a simple input file.
