@@ -190,6 +190,7 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, outpu
         sum_data = {}
 
         #Fetch Filters For Profit Calculations
+        if profit_args != None:
         profit_filter = build_filters(profit_args)
 
         #Output the column names and quit if asked
@@ -215,6 +216,7 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, outpu
                     row = shorten_data(row, shorten_args)
 
                 #Compute profit
+                if profit_args != None:
                 row = compute_lineitemprofit(row, profit_filter)
 
                 #save the current row to use for the next row's calculations
