@@ -134,6 +134,10 @@ The cost of good column name can be customized when calculating the profit.
 
 The fee percent column name can be customized when calculating the profit.
 
+#### Partial Supplement String
+
+#### Supress X in Profit Calculations
+
 ### Combination Examples
 Filter data based on the Practitioner John Doe and output the AmountPaid for any column that John Doe is in.
 
