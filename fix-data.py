@@ -197,7 +197,16 @@ def compute_lineitemprofit(row, filters):
 
     return row
 
-def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, output_header_only, profit_args):
+def do_work(args):
+    #convert args to variables
+    filename = args.i
+    outputfilename = args.o
+    sum_args = args.s
+    filter_args = args.f
+    shorten_args = args.shorten
+    output_header_only = args.column_names
+    profit_args = args.p
+    
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
         print("Error: Input file not found")
@@ -284,4 +293,4 @@ if __name__ == '__main__':
     if args.i == None:
         parser.print_help()
     else:
-        do_work(args.i, args.o, args.s, args.f, args.shorten, args.column_names, args.p)
+        do_work(args)
