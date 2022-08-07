@@ -2,5 +2,6 @@ Invoices*
 output.csv
 pytest
 Supplements.csv
+__pycache__
 
 !Invoices Sample.csv
