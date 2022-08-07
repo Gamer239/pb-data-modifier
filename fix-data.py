@@ -198,14 +198,18 @@ def compute_lineitemprofit(row, filters, profit_math):
         if type(profit_math["fee"]) != str or len(profit_math["fee"]) <= 0:
             print("Fee String Error")
             exit()
-        
+
         if profit_math["fee"] not in filter:
             print("Column '" + profit_math["fee"] + "' is not found in filter")
             exit()
 
         #Determine if the filter is in the description
         if filter["filter"] in row["LineItemDescription"]:
-            row["LineItemProfit"] = 'X'
+            subtotal = string_to_float(row["LineItemSubTotal"])
+            cog = string_to_float(filter[profit_math["cog"]])
+            fee = string_to_float(filter[profit_math["fee"]])
+            profit = ( ( subtotal * ( 100 - fee ) ) / 100 ) - cog
+            row["LineItemProfit"] = float_to_string( profit )
             found = True
 
     if found == False:
