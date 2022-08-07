@@ -182,6 +182,10 @@ def compute_lineitemprofit(row, filters):
         #Make sure the Line Item Description exists
         if "LineItemDescription" not in row:
             continue
+
+        #Make sure that we have something to compute against
+        if "LineItemSubtotal" not in row:
+            continue
         
         #Determine if the filter is in the description
         if filter["filter"] in row["LineItemDescription"]:
