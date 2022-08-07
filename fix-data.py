@@ -191,10 +191,18 @@ def compute_lineitemprofit(row, filters, profit_math):
             print("Cost of Goods String Error")
             exit()
 
+        if profit_math["cog"] not in filter:
+            print("Column '" + profit_math["cog"] + "' is not found in filter")
+            exit()
+
         if type(profit_math["fee"]) != str or len(profit_math["fee"]) <= 0:
             print("Fee String Error")
             exit()
         
+        if profit_math["fee"] not in filter:
+            print("Column '" + profit_math["fee"] + "' is not found in filter")
+            exit()
+
         #Determine if the filter is in the description
         if filter["filter"] in row["LineItemDescription"]:
             row["LineItemProfit"] = 'X'
