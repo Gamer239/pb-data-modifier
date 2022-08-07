@@ -3,14 +3,23 @@ This repo exists to make easy modifications to data that is exported from Practi
 
 ## Table of Contents
 [Requirements](#requirements)
+
 [Usage](#usage)
+
 [Examples](#examples)
+
 -[Simple Examples](#simple-examples)
+
 -[Sum Examples](#sum-examples)
+
 -[Filter Examples](#filter-examples)
+
 -[Shorten Examples](#shorten-examples)
+
 -[Column Name Example](#column-name-example)
+
 -[Supplemental Profit Example](#supplemental-profit-examples)
+
 -[Combination Example](#combination-examples)
 
 ## Requirements
