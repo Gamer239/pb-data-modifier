@@ -1,6 +1,18 @@
 # Practice Better Exported Data Modification Tools
 This repo exists to make easy modifications to data that is exported from Practice Better. Currently Practice Better outputs most of the relevant information on a single line. If you have multiple items in an invoice this information does not extend to these extra lines. This set of scripts will help Excel work with the data easier by filling in the missing data.
 
+## Table of Contents
+[Requirements](#requirements)
+[Usage](#usage)
+[Examples](#examples)
+-[Simple Examples](#simple-examples)
+-[Sum Examples](#sum-examples)
+-[Filter Examples](#filter-examples)
+-[Shorten Examples](#shorten-examples)
+-[Column Name Example](#column-name-example)
+-[Supplemental Profit Example](#supplemental-profit-examples)
+-[Combination Example](#combination-examples)
+
 ## Requirements
 Python 3
 
