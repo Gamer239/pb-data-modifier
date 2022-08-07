@@ -172,7 +172,7 @@ def build_filters(filter_args):
             
     return filters
 
-def compute_lineitemprofit(row, filters):
+def compute_lineitemprofit(row, filters, profit_math):
     found = False
     for filter in filters:
         #Make sure the filter value exists
@@ -186,6 +186,14 @@ def compute_lineitemprofit(row, filters):
         #Make sure that we have something to compute against
         if "LineItemSubTotal" not in row:
             continue
+
+        if type(profit_math["cog"]) != str or len(profit_math["cog"]) <= 0:
+            print("Cost of Goods String Error")
+            exit()
+
+        if type(profit_math["fee"]) != str or len(profit_math["fee"]) <= 0:
+            print("Fee String Error")
+            exit()
         
         #Determine if the filter is in the description
         if filter["filter"] in row["LineItemDescription"]:
@@ -206,6 +214,7 @@ def do_work(args):
     shorten_args = args.shorten
     output_header_only = args.column_names
     profit_args = [ args.p ]
+    profit_math = { "cog" : args.cog, "fee" : args.fee_percent }
     
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
@@ -251,7 +260,7 @@ def do_work(args):
 
                 #Compute profit
                 if profit_args != None:
-                    row = compute_lineitemprofit(row, profit_filter)
+                    row = compute_lineitemprofit(row, profit_filter, profit_math)
 
                 #save the current row to use for the next row's calculations
                 lastRow = row
@@ -287,6 +296,8 @@ if __name__ == '__main__':
     parser.add_argument('-shorten', nargs='+', help="Shorten the text of data to the text specified in the specified column. column=ShortenedValue. Note: Do NOT include commas in the strings to shorten. Shortening happens before filtering.", required=False)
     parser.add_argument('--column-names', action='store_true', help="List the names of the columns in the imported CSV and exit", required=False)
     parser.add_argument('-p', nargs='?', help="Use an additional file to calculate a line item profit", required=False, const="Supplements.csv| |*|Supplement Company|Supplement Name")
+    parser.add_argument('-cog', type=str, nargs='?', help="Cost of Goods - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Supplement Cost")
+    parser.add_argument('-fee-percent', type=str, nargs='?', help="Fee Percent - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Fee Percent")
 
     # Parse and print the results
     args = parser.parse_args()
