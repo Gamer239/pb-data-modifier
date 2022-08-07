@@ -170,7 +170,24 @@ def build_filters(filter_args):
     return filters
 
 def compute_lineitemprofit(row, filters):
-    
+    found = False
+    for filter in filters:
+        #Make sure the filter value exists
+        if "filter" not in filter:
+            continue
+        
+        #Make sure the Line Item Description exists
+        if "LineItemDescription" not in row:
+            continue
+        
+        #Determine if the filter is in the description
+        if filter["filter"] in row["LineItemDescription"]:
+            row["LineItemProfit"] = 'X'
+            found = True
+
+    if found == False:
+        row["LineItemProfit"] = 'X'
+
     return row
 
 def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, output_header_only, profit_args):
@@ -191,7 +208,7 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, outpu
 
         #Fetch Filters For Profit Calculations
         if profit_args != None:
-        profit_filter = build_filters(profit_args)
+            profit_filter = build_filters(profit_args)
 
         #Output the column names and quit if asked
         if output_header_only == True:
@@ -217,7 +234,7 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, outpu
 
                 #Compute profit
                 if profit_args != None:
-                row = compute_lineitemprofit(row, profit_filter)
+                    row = compute_lineitemprofit(row, profit_filter)
 
                 #save the current row to use for the next row's calculations
                 lastRow = row
