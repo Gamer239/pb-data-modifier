@@ -7,5 +7,57 @@ import pytest, importlib
 fix_data = importlib.import_module("fix-data")
 
 def test_lineitemprofit():
+    #define a basic row of valid data
+    row = {
+        'Practitioner': 'PractFirst PractLast', 
+        'ContactName': '', 'EmailAddress': '', 
+        'InvoiceNumber': 'CCLIENT-20220731-01', 
+        'InvoiceDate': '07/31/2022', 
+        'DueDate': '07/31/2022', 
+        'Total': '', 
+        'AmountDue': '', 
+        'AmountPaid': 0.0, 
+        'PaymentDate': '', 
+        'Description': '', 
+        'Notes': '', 
+        'Quantity': '', 
+        'UnitAmount': '', 
+        'Discount': '', 
+        'AccountCode': '', 
+        'TaxDescription': '', 
+        'TaxAmount': '', 
+        'WriteOff': '', 
+        'Currency': '', 
+        'PaymentStatus': '', 
+        'PaymentSource': '', 
+        'TotalRefund': '', 
+        'RefundSources': '', 
+        'RefundDates': '', 
+        'Fees': '', 
+        'LineItemDescription': '* Supplement Company Supplement', 
+        'LineItemAmount': '7.00', 
+        'LineItemQuantity': '1', 
+        'LineItemDiscount': '0.00', 
+        'LineItemTaxDescription': '', 
+        'LineItemTaxAmount': '0.00', 
+        'LineItemSubTotal': '97.00', 
+        'LineItemProfit': None
+        }
+    filters = [
+        {
+        'Supplement Name': 'Supplement', 
+        'Supplement Company': 'Supplement Company', 
+        'Variant Price': '68.37', 
+        "Supplement's Cost to the Business": '40.94', 
+        'Supplement Fee Percent': '0.15%', 
+        'filter': '* Supplement Company Supplement'
+        }
+    ]
+    profit_math = {
+        "cog" : "Supplement's Cost to the Business", 
+        "fee" : "Supplement Fee Percent" 
+        }
+
     
+    calc_row = fix_data.compute_lineitemprofit(row, filters, profit_math)
     assert True == True
