@@ -22,11 +22,13 @@ def fill_row(row, lastRow):
 
 #Convert a string based number to a float by shifting precision before converting to a float
 def string_to_float(number):
-    if type(number) == str:
+    if type(number) == str and number != 'X':
         leftside = float(number.split('.',1)[0])
         rightside = float(number.split('.',1)[1].split('%')[0])
         leftside = leftside * 100
         number = leftside + rightside
+    elif type(number) == str and number == 'X':
+        number = float(0.0)
     return(number)
 
 def float_to_string(number):
