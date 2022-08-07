@@ -219,6 +219,11 @@ def compute_lineitemprofit(row, filters, profit_math):
 
     return row
 
+def check_for_x(row, current_x_value, substring_check):
+    if "LineItemProfit" in row and row["LineItemProfit"] == "X" and substring_check in row["LineItemDescription"]:
+        current_x_value = True
+    return current_x_value
+
 def do_work(args):
     #convert args to variables
     filename = args.i
@@ -229,6 +234,7 @@ def do_work(args):
     output_header_only = args.column_names
     profit_args = [ args.p ]
     profit_math = { "cog" : args.cog, "fee" : args.fee_percent }
+    x_found = False
     
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
@@ -284,12 +290,20 @@ def do_work(args):
                 if filter_args != None and does_match_filter(row, filter_args) == False:
                     continue
 
+                #Test if X is found in the LineItemProfit only if profit is being calculated
+                if args.supress_x == False and args.p != None:
+                    x_found = check_for_x(row, x_found, args.partial_supplement_string)
+
                 #Add the sum data if it was defined in the arguments
                 if sum_args != None:
                     sum_data = sum_row(row, sum_args, sum_data)
 
                 #write the modified row to the output file
                 writer.writerow(row)
+
+        #Check to see if the warning needs to be output
+        if x_found == True and args.p != None:
+            print("Warning: Some profit calculations did not find a match")
 
         #Check to see if the sum argument was added
         if sum_args != None:
@@ -312,6 +326,8 @@ if __name__ == '__main__':
     parser.add_argument('-p', nargs='?', help="Use an additional file to calculate a line item profit", required=False, const="Supplements.csv| |*|Supplement Company|Supplement Name")
     parser.add_argument('-cog', type=str, nargs='?', help="Cost of Goods - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Supplement's Cost to the Business")
     parser.add_argument('-fee-percent', type=str, nargs='?', help="Fee Percent - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Supplement Fee Percent")
+    parser.add_argument('-partial-supplement-string', type=str, nargs='?', help="Define the string that will be used to determine if the X warning is needed", required=False, default="*")
+    parser.add_argument('-supress-x', action='store_true', help="Supress a warning about X being found", required=False, default=False)
 
     # Parse and print the results
     args = parser.parse_args()
