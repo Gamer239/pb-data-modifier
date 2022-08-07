@@ -145,11 +145,15 @@ For the example above, * does not match any column name so its value is used dir
 
 #### Cost of Good Column Name
 
-The cost of good column name can be customized when calculating the profit. This argument is only meant to be used in conjunction with the `-p` flag.
+The cost of good column name can be customized when calculating the profit. This column name should exist in the CSV file defined in the `-p` argument. This argument is only meant to be used in conjunction with the `-p` flag.
+
+`python3 fix-data.py -i input.csv -p -cog "Supplement's Cost to the Business"`
 
 #### Fee Percent Column Name
 
-The fee percent column name can be customized when calculating the profit. This argument is only meant to be used in conjunction with the `-p` flag.
+The fee percent column name can be customized when calculating the profit. This column name should exist in the CSV file defined in the `-p` argument. This argument is only meant to be used in conjunction with the `-p` flag.
+
+`python3 fix-data.py -i input.csv -p -fee-percent "Supplement Fee Percent"`
 
 #### Partial String For X Matching
 
