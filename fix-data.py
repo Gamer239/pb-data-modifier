@@ -296,8 +296,8 @@ if __name__ == '__main__':
     parser.add_argument('-shorten', nargs='+', help="Shorten the text of data to the text specified in the specified column. column=ShortenedValue. Note: Do NOT include commas in the strings to shorten. Shortening happens before filtering.", required=False)
     parser.add_argument('--column-names', action='store_true', help="List the names of the columns in the imported CSV and exit", required=False)
     parser.add_argument('-p', nargs='?', help="Use an additional file to calculate a line item profit", required=False, const="Supplements.csv| |*|Supplement Company|Supplement Name")
-    parser.add_argument('-cog', type=str, nargs='?', help="Cost of Goods - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Supplement Cost")
-    parser.add_argument('-fee-percent', type=str, nargs='?', help="Fee Percent - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Fee Percent")
+    parser.add_argument('-cog', type=str, nargs='?', help="Cost of Goods - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Supplement's Cost to the Business")
+    parser.add_argument('-fee-percent', type=str, nargs='?', help="Fee Percent - Used for computing the line item profit only. The name of the column should be set here.", required=False, default="Supplement Fee Percent")
 
     # Parse and print the results
     args = parser.parse_args()
