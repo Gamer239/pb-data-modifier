@@ -65,9 +65,19 @@ def get_basic_profit_math():
         }
     return profit_math
 
-def test_lineitemprofit():
+def setup_inputs_and_compute_profit(subtotal, cog, fee):
     row = get_basic_row()
     filters = get_basic_filters()
     profit_math = get_basic_profit_math()
+
+    row["LineItemSubTotal"] = subtotal
+    filters[0]["Supplement's Cost to the Business"] = cog
+    filters[0]["Supplement Fee Percent"] = fee
+
     calc_row = fix_data.compute_lineitemprofit(row, filters, profit_math)
-    assert calc_row["LineItemProfit"] == "41.51"
+    return calc_row["LineItemProfit"]
+
+
+def test_lineitemprofit():
+    result = setup_inputs_and_compute_profit("97.00", "40.94", "0.15%")
+    assert result == "41.51"
