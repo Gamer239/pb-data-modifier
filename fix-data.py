@@ -141,6 +141,7 @@ def read_supplemental_csv(filename):
 #Take in the filter argument strings one at a time and turn them into valid string filters
 def build_filters(filter_args):
     filters = []
+    built_row = {}
     for item in filter_args:
         filename = item.split("|", 1)[0]
         file_filters = read_supplemental_csv(filename)
@@ -150,15 +151,23 @@ def build_filters(filter_args):
         #Create each filter from each row of the data
         for row in file_filters:
             filter = ""
+            built_row = {}
             for field in fields.split("|"):
+                #Add the spacer only if we already have a something in the filter string
+                if len(filter) > 0:
+                    filter = filter + spacer
+
+                #Add either the found variable or the text itself to the filter string
                 if field in row:
                     filter = filter + row[field]
                 else:
                     filter = filter + field
-                filter = filter + spacer
-            row["filter"] = filter
             
-    return file_filters
+            built_row = row
+            built_row["filter"] = filter
+            filters.append(built_row)
+            
+    return filters
 
 def compute_lineitemprofit(row, filters):
     
