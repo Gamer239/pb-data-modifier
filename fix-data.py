@@ -57,6 +57,9 @@ def sum_row(row, sum_fields, current_sums):
                 if len(str(current_sums[field])) == 0:
                     current_sums[field] = 0.0
                 sums[field] = string_to_float(sums[field]) + string_to_float(current_sums[field])
+            #Carry over the data if the field is X (This can apply to LineItemProfit)
+            elif sums[field] == 'X':
+                sums[field] = current_sums[field]
             elif len(sums[field]) >= 1:
                 sums[field] = sums[field] + current_sums[field]
                 if len(sums[field]) > 1000:
