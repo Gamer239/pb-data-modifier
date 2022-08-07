@@ -145,15 +145,25 @@ For the example above, * does not match any column name so its value is used dir
 
 #### Cost of Good Column Name
 
-The cost of good column name can be customized when calculating the profit.
+The cost of good column name can be customized when calculating the profit. This argument is only meant to be used in conjunction with the `-p` flag.
 
 #### Fee Percent Column Name
 
-The fee percent column name can be customized when calculating the profit.
+The fee percent column name can be customized when calculating the profit. This argument is only meant to be used in conjunction with the `-p` flag.
 
 #### Partial String For X Matching
 
+This argument is solely used to aid in determining when to display the profit calculation warning to the command line. This argument is only meant to be used in conjunction with the `-p` flag.
+
+`python3 fix-data.py -i input.csv -p -partial-supplement-string "*"`
+
+In this case any LineItemDescription that contained * would be need to have a match in LineItemProfit or else the script would flag a warning.
+
 #### Supress X in Profit Calculations
+
+The existance of this argument supresses the warning described above. This argument is only meant to be used in conjunction with the `-p` flag.
+
+`python3 fix-data.py -i input.csv -p -supress-x`
 
 ### Combination Examples
 Filter data based on the Practitioner John Doe and output the AmountPaid for any column that John Doe is in.
