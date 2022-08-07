@@ -77,7 +77,27 @@ def setup_inputs_and_compute_profit(subtotal, cog, fee):
     calc_row = fix_data.compute_lineitemprofit(row, filters, profit_math)
     return calc_row["LineItemProfit"]
 
+def test_profit_with_no_filter_match():
+    row = get_basic_row()
+    filters = get_basic_filters()
+    profit_math = get_basic_profit_math()
 
-def test_lineitemprofit():
+    row["LineItemSubTotal"] = "97.00"
+    filters[0]["Supplement's Cost to the Business"] = "40.94"
+    filters[0]["Supplement Fee Percent"] = "0.15"
+    filters[0]["filter"] = "No Match"
+
+    calc_row = fix_data.compute_lineitemprofit(row, filters, profit_math)
+    assert calc_row["LineItemProfit"] == "X"
+
+def test_profit_with_percent_in_fee():
     result = setup_inputs_and_compute_profit("97.00", "40.94", "0.15%")
     assert result == "41.51"
+
+def test_profit_without_percent_in_fee():
+    result = setup_inputs_and_compute_profit("97.00", "40.94", "0.15")
+    assert result == "41.51"
+
+def test_profit_with_just_pennies_in_remainder():
+    result = setup_inputs_and_compute_profit("97.00", "45.40", "0.15")
+    assert result == "37.05"
