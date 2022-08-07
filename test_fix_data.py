@@ -6,7 +6,7 @@ __version__ = "1.0"
 import pytest, importlib
 fix_data = importlib.import_module("fix-data")
 
-def test_lineitemprofit():
+def get_basic_row():
     #define a basic row of valid data
     row = {
         'Practitioner': 'PractFirst PractLast', 
@@ -43,6 +43,9 @@ def test_lineitemprofit():
         'LineItemSubTotal': '97.00', 
         'LineItemProfit': None
         }
+    return row
+
+def get_basic_filters():
     filters = [
         {
         'Supplement Name': 'Supplement', 
@@ -53,10 +56,18 @@ def test_lineitemprofit():
         'filter': '* Supplement Company Supplement'
         }
     ]
+    return filters
+
+def get_basic_profit_math():
     profit_math = {
         "cog" : "Supplement's Cost to the Business", 
         "fee" : "Supplement Fee Percent" 
         }
-    
+    return profit_math
+
+def test_lineitemprofit():
+    row = get_basic_row()
+    filters = get_basic_filters()
+    profit_math = get_basic_profit_math()
     calc_row = fix_data.compute_lineitemprofit(row, filters, profit_math)
     assert calc_row["LineItemProfit"] == "41.51"
