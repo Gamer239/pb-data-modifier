@@ -24,7 +24,7 @@ def fill_row(row, lastRow):
 def string_to_float(number):
     if type(number) == str:
         leftside = float(number.split('.',1)[0])
-        rightside = float(number.split('.',1)[1])
+        rightside = float(number.split('.',1)[1].split('%')[0])
         leftside = leftside * 100
         number = leftside + rightside
     return(number)
