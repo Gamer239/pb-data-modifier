@@ -38,7 +38,7 @@ def float_to_string(number):
         else:
             leftside = number + rightside
         leftside = leftside / shiftnum
-        number = str(int(leftside)) + "." + str(int(rightside))
+        number = str(int(leftside)) + "." + str(int(rightside)).zfill(2)
     return(number)
 
 #Add the current row data to the sum totals and return the updated values
