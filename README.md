@@ -8,19 +8,19 @@ This repo exists to make easy modifications to data that is exported from Practi
 
 [Examples](#examples)
 
--[Simple Examples](#simple-examples)
+- [Simple Examples](#simple-examples)
 
--[Sum Examples](#sum-examples)
+- [Sum Examples](#sum-examples)
 
--[Filter Examples](#filter-examples)
+- [Filter Examples](#filter-examples)
 
--[Shorten Examples](#shorten-examples)
+- [Shorten Examples](#shorten-examples)
 
--[Column Name Example](#column-name-example)
+- [Column Name Example](#column-name-example)
 
--[Supplemental Profit Example](#supplemental-profit-examples)
+- [Supplemental Profit Example](#supplemental-profit-examples)
 
--[Combination Example](#combination-examples)
+- [Combination Example](#combination-examples)
 
 ## Requirements
 Python 3
