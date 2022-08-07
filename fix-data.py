@@ -209,6 +209,7 @@ def do_work(filename, outputfilename, sum_args, filter_args, shorten_args, outpu
         #Fetch Filters For Profit Calculations
         if profit_args != None:
             profit_filter = build_filters(profit_args)
+            csvcontents.fieldnames.append("LineItemProfit")
 
         #Output the column names and quit if asked
         if output_header_only == True:
