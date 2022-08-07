@@ -57,7 +57,6 @@ def test_lineitemprofit():
         "cog" : "Supplement's Cost to the Business", 
         "fee" : "Supplement Fee Percent" 
         }
-
     
     calc_row = fix_data.compute_lineitemprofit(row, filters, profit_math)
-    assert True == True
+    assert calc_row["LineItemProfit"] == "41.51"
