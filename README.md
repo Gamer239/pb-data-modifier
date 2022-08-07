@@ -20,6 +20,12 @@ This repo exists to make easy modifications to data that is exported from Practi
 
 - [Supplemental Profit Example](#supplemental-profit-examples)
 
+    - [Cost of Good Column Name](#cost-of-good-column-name)
+
+    - [Fee Percent Column Name](#fee-percent-column-name)
+
+    - [Supress X in Profit Calculations](#supress-x-in-profit-calculations)
+
 - [Combination Example](#combination-examples)
 
 ## Requirements
