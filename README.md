@@ -24,6 +24,8 @@ This repo exists to make easy modifications to data that is exported from Practi
 
     - [Fee Percent Column Name](#fee-percent-column-name)
 
+    - [Partial String For X Matching](#partial-string-for-x-matching)
+
     - [Supress X in Profit Calculations](#supress-x-in-profit-calculations)
 
 - [Combination Example](#combination-examples)
@@ -149,7 +151,7 @@ The cost of good column name can be customized when calculating the profit.
 
 The fee percent column name can be customized when calculating the profit.
 
-#### Partial Supplement String
+#### Partial String For X Matching
 
 #### Supress X in Profit Calculations
 
