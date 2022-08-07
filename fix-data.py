@@ -205,7 +205,7 @@ def do_work(args):
     filter_args = args.f
     shorten_args = args.shorten
     output_header_only = args.column_names
-    profit_args = args.p
+    profit_args = [ args.p ]
     
     #Check to make sure that the input file exists and exit on error
     if os.path.isfile(filename) == False:
@@ -286,7 +286,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', nargs='+', help="Only output or compute a result when column=value or column=value,value2,etc. Note: Do NOT put commas in the filter values.", required=False)
     parser.add_argument('-shorten', nargs='+', help="Shorten the text of data to the text specified in the specified column. column=ShortenedValue. Note: Do NOT include commas in the strings to shorten. Shortening happens before filtering.", required=False)
     parser.add_argument('--column-names', action='store_true', help="List the names of the columns in the imported CSV and exit", required=False)
-    parser.add_argument('-p', nargs='+', help="Use an additional file to calculate a line item profit", required=False)
+    parser.add_argument('-p', nargs='?', help="Use an additional file to calculate a line item profit", required=False, const="Supplements.csv| |*|Supplement Company|Supplement Name")
 
     # Parse and print the results
     args = parser.parse_args()
