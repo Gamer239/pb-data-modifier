@@ -244,7 +244,7 @@ def do_work(args):
         sum_data = {}
 
         #Fetch Filters For Profit Calculations
-        if profit_args != None:
+        if args.p != None:
             profit_filter = build_filters(profit_args)
             csvcontents.fieldnames.append("LineItemProfit")
 
@@ -271,7 +271,7 @@ def do_work(args):
                     row = shorten_data(row, shorten_args)
 
                 #Compute profit
-                if profit_args != None:
+                if args.p != None:
                     row = compute_lineitemprofit(row, profit_filter, profit_math)
 
                 #save the current row to use for the next row's calculations
