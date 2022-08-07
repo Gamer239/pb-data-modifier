@@ -35,6 +35,14 @@ optional arguments:
 
   --column-names        List the names of the columns in the imported CSV and exit
 
+  -p P [P ...]          Use an additional file to calculate a line item profit
+
+  -cog [COG]            Cost of Goods - Used for computing the line item profit only. The name  of the column should be set here.
+
+  -fee-percent [FEE_PERCENT]
+                        Fee Percent - Used for computing the line item profit only. The name of the column should be set
+                        here.
+
 ## Examples
 ### Simple Examples
 Providing a simple input file.
@@ -85,6 +93,29 @@ Shorten multiple columns
 Output the names of the columns. This is useful for getting information for the filter argument without doing any data processing.
 
 `python fix-data.py -i Invoices-19800101-19800131.csv --column-names`
+
+### Supplemental Profit Examples
+Compute the profit based on a supplemental file. The profit will be added on as a LineItemProfit line whenever the flag is used. The separator | **must** be used between each item (if specified).
+
+Compute the profit with the default column names
+
+`python3 fix-data.py -i input.csv -p`
+
+Compute the profit by specifing the LineItemDesciption search parameters. Before the first | denotes the file name. The next section denotes the spacing and the remaining denote the search strings.
+
+To illustrate further <filename>|<spacer>|search params. If one of the search params matches a column name in the supplemental file then the corresponding column's value will be used. If the column name doesn't match then the text will be used instead.
+
+`python3 fix-data.py -i input.csv -p "Supplements.csv| |*|Supplement Company|Supplement Name"`
+
+For the example above, * does not match any column name so its value is used directly. Supplement Company and Supplement Name match column header names in a CSV and therefore the value of the row is used instead.
+
+#### Cost of Good Column Name
+
+The cost of good column name can be customized when calculating the profit.
+
+#### Fee Percent Column Name
+
+The fee percent column name can be customized when calculating the profit.
 
 ### Combination Examples
 Filter data based on the Practitioner John Doe and output the AmountPaid for any column that John Doe is in.
