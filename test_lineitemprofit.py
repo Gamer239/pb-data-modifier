@@ -105,3 +105,7 @@ def test_profit_with_just_pennies_in_remainder():
 def test_profit_with_negative_profit():
     result = setup_inputs_and_compute_profit("97.00", "99.94", "0.15")
     assert result == "-17.49"
+
+def test_profit_with_negative_pennies_profit():
+    result = setup_inputs_and_compute_profit("97.00", "99.46", "0.15")
+    assert result == "-17.01"
