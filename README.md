@@ -137,7 +137,7 @@ Compute the profit with the default column names
 
 Compute the profit by specifing the LineItemDesciption search parameters. Before the first | denotes the file name. The next section denotes the spacing and the remaining denote the search strings.
 
-To illustrate further <filename>|<spacer>|search params. If one of the search params matches a column name in the supplemental file then the corresponding column's value will be used. If the column name doesn't match then the text will be used instead.
+To illustrate further <filename>|<spacer>|search params separated with a |. If one of the search params matches a column name in the supplemental file then the corresponding column's value will be used. If the column name doesn't match then the text will be used instead.
 
 `python3 fix-data.py -i input.csv -p "Supplements.csv| |*|Supplement Company|Supplement Name"`
 
@@ -185,3 +185,12 @@ Filter and shorten data based on Practitioner Joe and his "New Client" rows. Not
 Filter, shorten, and sum data. Note: Shortening happens BEFORE filtering.
 
 `python fix-data.py -i Invoices-19800101-19800131.csv -f "Practitioner=John Doe" "LineItemAmount=3.50" -shorten "LineItemDescription=New Client,Phone Client" -s Total AmountPaid`
+
+Shorten the LineItemDescription for "* Name" items, compute the profit using Supplements.csv, and sum the LineItemProfit.
+
+`python3 fix-data.py -i Invoices\ Sample.csv -shorten "LineItemDescription=* Name" -p -s LineItemProfit`
+
+Compute the profit, supress warnings, and sum the LineItemProfit.
+
+`python3 fix-data.py -i Invoices\ Sample.csv -p -supress-x -s LineItemProfit`
+
